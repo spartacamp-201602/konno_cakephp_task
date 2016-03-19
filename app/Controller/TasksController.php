@@ -52,4 +52,27 @@ class TasksController extends AppController {
         }
 
     }
+
+    public function create() {
+
+        // POSTメソッドかチェック
+        if ($this->request->is('post')) {
+
+            // 送られてきたデータを保存
+            if ($this->Task->save($this->request->data)) {
+                // 保存に成功
+                $msg = sprintf('タスク %s を作成しました', $this->Task->id);
+                $this->Flash->success($msg);
+
+                $this->redirect(array('action' => 'index'));
+
+            } else {
+                // 保存に失敗
+                $msg = sprintf('タスク %s の作成に失敗しました', $id);
+                $this->Flash->error($msg);
+            }
+
+        }
+
+    }
 }
