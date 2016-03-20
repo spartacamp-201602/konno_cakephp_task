@@ -16,7 +16,6 @@ class TasksController extends AppController {
         $this->set('tasks', $tasks);
     }
 
-
     public function done($id) {
 
         // idをセット
@@ -29,4 +28,18 @@ class TasksController extends AppController {
 
         return $this->redirect(array('action' => 'index'));
     }
-}
+
+    public function create() {
+        if ($this->request->is('post')) {
+
+            // タスクを保存
+            $this->Task->save($this->request->data);
+
+            // フラッシュメッセージ
+            $msg = sprintf('タスク %s を追加しました。', $this->Task->id);
+            $this->Flash->success($msg);
+
+            return $this->redirect(array('action' => 'index'));
+        }
+    }
+ }
