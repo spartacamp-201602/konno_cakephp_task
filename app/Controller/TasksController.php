@@ -56,7 +56,7 @@ class TasksController extends AppController {
         $task = $this->Task->findById($id);
 
         if(!$task) {
-            throw new NotFoundException('指定された記事は存在しません。');
+            throw new NotFoundException('指定されたタスクは存在しません。');
         }
 
         // フォームからの送信をチェックする
