@@ -38,14 +38,15 @@ class TasksController extends AppController {
     public function create() {
         if ($this->request->is('post')) {
 
-            // タスクを保存
-            $this->Task->save($this->request->data);
+            // タスクを保存試行
+            if ($this->Task->save($this->request->data)) {
+                $msg = sprintf('タスク %s を追加しました。', $this->Task->id);
+                $this->Flash->success($msg);
 
-            // フラッシュメッセージ
-            $msg = sprintf('タスク %s を追加しました。', $this->Task->id);
-            $this->Flash->success($msg);
-
-            return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Flash->error('保存できませんでした。');
+            }
         }
     }
 }
