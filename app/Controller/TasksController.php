@@ -20,13 +20,19 @@ class TasksController extends AppController {
 
         // idをセット
         $this->Task->id = $id;
-        $this->Task->saveField('status', 1);
 
-        // フラッシュメッセージ
-        $msg = sprintf('タスク %s を完了しました。', $id);
-        $this->Flash->success($msg);
+        if ($this->Task->saveField('status', 1)) {
+            // 完了処理に成功した場合
+            $msg = sprintf('タスク %s を完了しました。', $id);
+            $this->Flash->success($msg);
 
-        return $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
+        } else {
+            // 失敗した場合
+            $msg = sprintf('タスク %s を何らかの理由により完了できませんでした。', $id);
+            $this->Flash->success($msg);
+            return $this->redirect(array('action' => 'index'));
+        }
     }
 
     public function create() {
@@ -42,4 +48,4 @@ class TasksController extends AppController {
             return $this->redirect(array('action' => 'index'));
         }
     }
- }
+}
