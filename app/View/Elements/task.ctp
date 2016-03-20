@@ -21,7 +21,7 @@
 
     <?= $this->Html->link(
         '編集する',
-        '/tasks/edit' . $task['Task']['id'],
+        '/tasks/edit/' . $task['Task']['id'],
         array('class' => 'button left')) ?>
 
     <?= $this->Html->link(
