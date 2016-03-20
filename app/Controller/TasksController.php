@@ -1,6 +1,8 @@
 <?php
 class TasksController extends AppController {
 
+    public $helpers = array('Html');
+
     public function index() {
         $options = array(
             'conditions' => array(
