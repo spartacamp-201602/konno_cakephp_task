@@ -11,6 +11,8 @@ echo $this->Html->link(
 
 <h3><?= count($tasks) ?>件のタスクが未完了です</h3>
 
+<!-- <?php debug($tasks) ?> -->
+
 <table>
     <tr>
         <th>ID</th>
@@ -22,7 +24,17 @@ echo $this->Html->link(
     <?php foreach ($tasks as $task) : ?>
     <tr>
         <td><?= $task['Task']['id'] ?></td>
-        <td><?= h($task['Task']['name']) ?></td>
+        <td>
+            <?= h($task['Task']['name']) ?>
+            <!-- notesテーブルのbody表示を追加 -->
+            <ul>
+                <?php foreach ($task['Note'] as $note) : ?>
+                    <li>
+                        <?= $note['body'] ?>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </td>
         <td><?= h($task['Task']['due_date']) ?></td>
         <td><?= h($task['Task']['created']) ?></td>
         <td>

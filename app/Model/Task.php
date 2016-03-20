@@ -2,6 +2,9 @@
 
 class Task extends AppModel {
 
+    // アソシエーション設定
+    public $hasMany = array('Note');
+
     public $validate = array(
         'name' => array(
             'rule' => array('between', 5, 30),
