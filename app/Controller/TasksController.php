@@ -61,8 +61,9 @@ class TasksController extends AppController {
 
         // フォームからの送信をチェックする
         if ($this->request->is(array('post', 'put'))) {
-
             // 更新を試みる
+
+            // 新規タスク挿入がされないよう明示的にidを与える
             $this->Task->id = $id;
 
             if ($this->Task->save($this->request->data)) {
