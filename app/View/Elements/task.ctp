@@ -19,16 +19,13 @@
         </ul>
     </p>
 
-    <?php echo $this->Html->link(
-        '編集',
-        '/Tasks/edit/' . $task['Task']['id'],
-        array('class' => 'button left')
-        ); ?>
+    <?= $this->Html->link(
+        '編集する',
+        '/tasks/edit' . $task['Task']['id'],
+        array('class' => 'button left')) ?>
 
-    <?php echo $this->Html->link(
+    <?= $this->Html->link(
         'このタスクを完了する',
         '/Tasks/done/' . $task['Task']['id'],
-        array('class' => 'button right')
-        );
-        ?>
-</div>
+        array('class' => 'button right')) ?>
+    </div>
