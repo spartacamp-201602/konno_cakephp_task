@@ -33,6 +33,7 @@ echo $this->Html->link(
                         <?= $note['body'] ?>
                     </li>
                 <?php endforeach ?>
+                <?= $this->Html->link('コメントを追加', '/notes/add') ?>
             </ul>
         </td>
         <td><?= h($task['Task']['due_date']) ?></td>
