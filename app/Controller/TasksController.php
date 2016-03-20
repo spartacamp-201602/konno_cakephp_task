@@ -2,6 +2,7 @@
 class TasksController extends AppController {
 
     public $helpers = array('Html');
+    public $components = array('Flash');
 
     public function index() {
         $options = array(
@@ -13,5 +14,19 @@ class TasksController extends AppController {
         $tasks = $this->Task->find('all', $options);
 
         $this->set('tasks', $tasks);
+    }
+
+
+    public function done($id) {
+
+        // idをセット
+        $this->Task->id = $id;
+        $this->Task->saveField('status', 1);
+
+        // フラッシュメッセージ
+        $msg = sprintf('タスク %s を完了しました。', $id);
+        $this->Flash->success($msg);
+
+        return $this->redirect(array('action' => 'index'));
     }
 }
